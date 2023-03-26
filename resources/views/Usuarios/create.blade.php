@@ -29,7 +29,7 @@
           <form action="{{ url('usuarios')}}" id="agregar" method="post" enctype="multipart/form-data">
             {!! csrf_field() !!}
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="nombre" placeholder="Ejemplo: Jair Josue" name="nombre" required>
+              <input type="text" class="form-control" id="nombre_u" placeholder="Ejemplo: Jair Josue" name="nombre_u" required>
               <label for="floatingInput">Nombre</label>
           </div>
           <div class="form-floating mb-3">

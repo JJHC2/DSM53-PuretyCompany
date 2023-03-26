@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Sensor;
+use App\Models\Deposito;
 
 class SensorController extends Controller
 {
@@ -14,7 +16,9 @@ class SensorController extends Controller
      */
     public function index()
     {
-        return view("Sensor/index");
+        $sensor = Sensor::Select('sensor.id','sensor.nombre','deposito.codigo')
+        ->join('deposito','deposito.id','=','sensor.deposito_id')->get();
+        return view("Sensor.index",compact("sensor"));
     }
 
     /**
@@ -24,7 +28,8 @@ class SensorController extends Controller
      */
     public function create()
     {
-        //
+        $deposito = Deposito::all('id','codigo');
+        return view('Sensor.create' ,compact('deposito'));
     }
 
     /**
@@ -35,7 +40,9 @@ class SensorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sensor=$request->all();
+        Sensor::create($sensor);
+        return redirect('sensor')->with('agregar','Ok');
     }
 
     /**
@@ -46,7 +53,9 @@ class SensorController extends Controller
      */
     public function show($id)
     {
-        //
+        $sensor = Sensor::find($id);
+    
+        return view('sensor.show', compact('sensor'));
     }
 
     /**
@@ -57,7 +66,9 @@ class SensorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $deposito=Deposito::all('id','codigo');
+        $sensor = Sensor::findOrFail($id);    
+        return view('sensor.edit', compact('deposito','sensor'));
     }
 
     /**
@@ -69,7 +80,10 @@ class SensorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sensor = Sensor::findOrFail($id);
+        $input=$request->all();
+        $sensor->update($input);
+        return redirect('sensor')->with('editar','Ok');
     }
 
     /**
@@ -80,6 +94,13 @@ class SensorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $senso = Sensor::find($id);
+
+        if ($senso) {
+            $senso->delete();
+            return redirect('sensor')->with('eliminar','Ok');
+        } else {
+            return redirect()->route('sensor.index');
+        }
     }
 }

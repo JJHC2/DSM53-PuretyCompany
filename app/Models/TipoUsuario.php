@@ -10,7 +10,11 @@ class TipoUsuario extends Model
     use HasFactory;
     protected $table='tipo_usuario';
     protected $fillable=[
-        'nombre',
+        'nombre_t',
         'usuario_id',
     ];
+    public function Usuario()
+	{
+		return $this->belongsTo(Usuario::class);
+	}
 }

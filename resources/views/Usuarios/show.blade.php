@@ -25,7 +25,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Usuarios</h4>
+            <h4 class="card-title">Usuario</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -45,20 +45,19 @@
                 </thead>
                 <tbody>
                   <tr>
-                    @foreach($usuarios as $usuario)
                     <tr>
                     <td>{{$usuario->id}}</td>
-                    <td>{{$usuario->nombre}}</td>
+                    <td>{{$usuario->nombre_u}}</td>
                     <td>{{$usuario->app}}</td>
                     <td>{{$usuario->apm}}</td>
                     <td>{{$usuario->email}}</td>
-                    <td><img src="card-img-top" src="{{asset()}} " alt="Foto"/></td>
-                    <td class="text-right">{{$usuario->telefono}}</td>
-                    <div class="row">
+                    <td class="border px-14 py-1">
+                      <img src="/imagen/{{$usuario->imagen}}" width="250px"/>
+                    </td>
+                    <td>{{$usuario->telefono}}</td>
+
                       <a href="/usuarios" class="btn btn-danger m-3">Salir</a>
-                                                              </div>
                 </tr>
-                @endforeach
                 </tbody>
               </table>
             </div>

@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <!-- CSS only -->
 </head>
 <div class="wrapper ">
-    <div class="sidebar" data-color="orange">
+    <div class="sidebar" data-color="yellow">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -68,7 +68,7 @@
             </a>
           </li>
           <li>
-            <a href="/requisitos">
+            <a href="/requerimientos">
               <i class="fa-sharp fa-solid fa-clipboard"></i>
               <p>Requerimientos</p>
             </a>

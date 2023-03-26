@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('deposito', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->string("nombre");
+            $table->integer("codigo");
             $table->integer("capacidad");
             $table->string("Lugar");
             $table->unsignedBigInteger("usuario_id");

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('usuario', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("nombre",60);
+            $table->string("nombre_u",60);
             $table->string("app",40);
             $table->string("apm",40);
             $table->string("email");

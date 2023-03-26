@@ -2,6 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController\EstadosApiController;
+use App\Http\Controllers\ApiController\MunicipiosApiController;
+use App\Http\Controllers\ApiController\UsuariosApiController;
+use App\Http\Controllers\ApiController\TipoApiController;
+use App\Http\Controllers\ApiController\UbicacionApiController;
+use App\Http\Controllers\ApiController\DepositoApiController;
+use App\Http\Controllers\ApiController\SensorApiController;
+use App\Http\Controllers\ApiController\RequisitosApiController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +28,11 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 }); */
 
-Route::Apiresource('usuarios',ClassroomsController::class); 
-Route::Apiresource('tipo_usuario',DirectionsController::class); 
-Route::Apiresource('ubicacion',ReportsController::class); 
-Route::Apiresource('deposito',TypeofusersController::class); 
-Route::Apiresource('sensor',UsersController::class); 
-Route::Apiresource('requisitos',UsersController::class);
+Route::apiResource('usuarios', UsuariosApiController::class);
+Route::apiResource('tipo_usuario', TipoApiController::class);
+Route::apiResource('ubicacion', UbicacionApiController::class);
+Route::apiResource('deposito', DepositoApiController::class);
+Route::apiResource('sensor', SensorApiController::class);
+Route::apiResource('requisitos', RequisitosApiController::class);
+Route::apiResource('estados', EstadosApiController::class);
+Route::apiResource('municipios', MunicipiosApiController::class);

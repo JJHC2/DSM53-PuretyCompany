@@ -16,7 +16,7 @@ class TipoUsuarioController extends Controller
      */
     public function index()
     {
-        $tipos = TipoUsuario::Select('tipo_usuario.id','usuario.nombre','tipo_usuario.nombre_t')
+        $tipos = TipoUsuario::Select('tipo_usuario.id','usuario.nombre_u','tipo_usuario.nombre_t')
         ->join('usuario','usuario.id','=','tipo_usuario.usuario_id')->get();
         return view("Tipo.index",compact("tipos"));
     }
@@ -28,7 +28,7 @@ class TipoUsuarioController extends Controller
      */
     public function create()
     {
-        $usuarios = Usuario::all('id','nombre');
+        $usuarios = Usuario::all('id','nombre_u');
         return view('Tipo.create' ,compact('usuarios'));
     }
 
@@ -40,7 +40,9 @@ class TipoUsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipos=$request->all();
+        TipoUsuario::create($tipos);
+        return redirect('t_usuario')->with('agregar','Ok');
     }
 
     /**
@@ -51,7 +53,9 @@ class TipoUsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipo = TipoUsuario::find($id);
+    
+        return view('Tipo.show', compact('tipo'));
     }
 
     /**
@@ -62,7 +66,9 @@ class TipoUsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuarios=Usuario::all('id','nombre_u');
+        $tipo = TipoUsuario::findOrFail($id);    
+        return view('Tipo.edit', compact('tipo','usuarios'));
     }
 
     /**
@@ -74,7 +80,10 @@ class TipoUsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tipo = TipoUsuario::findOrFail($id);
+        $input=$request->all();
+        $tipo->update($input);
+        return redirect('t_usuario')->with('editar','Ok');
     }
 
     /**
@@ -85,6 +94,13 @@ class TipoUsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipo = TipoUsuario::find($id);
+
+        if ($tipo) {
+            $tipo->delete();
+            return redirect('t_usuario')->with('eliminar','Ok');
+        } else {
+            return redirect()->route('Tipo.index');
+        }
     }
 }

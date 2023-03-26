@@ -10,7 +10,7 @@ class Usuario extends Model
     use HasFactory;
     protected $table='usuario';
     protected $fillable=[
-        'nombre',
+        'nombre_u',
         'app',
         'apm',
         'email',
@@ -18,4 +18,15 @@ class Usuario extends Model
         'imagen',
         'telefono',
     ];
+    public function TipoUsuario()
+	{
+		return $this->hasOne(TipoUsuario::class);
+	}
+    public function Usuario()
+	{
+		return $this->hasOne(TipoUsuario::class);
+	}
+    public function deposito(){
+        return $this->hasOne(Deposito::class);
+    }
 }

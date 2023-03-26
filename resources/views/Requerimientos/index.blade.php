@@ -25,7 +25,10 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Usuarios</h4>
+            <h4 class="card-title">Requerimientos</h4>
+          </div>
+          <div class="d-flex justify-content-end">
+            <a class="btn btn-success" href="requerimientos/create"><i class="fa-sharp fa-solid fa-boxes-stacked"></i></a>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -43,17 +46,19 @@
                   <th class="text-right">Modificar</th>
                 </thead>
                 <tbody>
+                  @foreach($requerimientos as $requerimiento)
                   <tr>
-                  <td class="text-center">1</td>
-                  <td class="text-center">Temperatura</td>
-                  <td class="text-center">300</td>
-                  <td class="text-right"><a href="#" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
-                  <td class="text-center"> <form action="#" class="d-inline formulario-eliminar" method="POST">
+                  <td>{{$requerimiento->id}}</td>
+                  <td>{{$requerimiento->nombre}}</td>
+                  <td>{{$requerimiento->PPM}}</td>
+                  <td><a href="#" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
+                  <td> <form action="#" class="d-inline formulario-eliminar" method="POST">
                     <button class="btn btn-danger m-6"><i class="fa-solid fa-trash"></i></button>
                   </form>
                                                 </td>
                 <td class="text-center"><a href="#" class="btn btn-warning"><i class="fa-solid fa-pen"></i></a></td>
                 </tr>
+                @endforeach
                 </tbody>
               </table>
             </div>

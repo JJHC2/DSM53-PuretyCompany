@@ -40,7 +40,6 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         $usuarios=$request->all();
-        $usuarios['password'] = Hash::make($usuarios['password']);
         if($imagen=$request->file('imagen')){
             $rutaGuardarImagen='imagen/';
             $imagenUsuario= time().".".$imagen->extension();
@@ -48,7 +47,7 @@ class UsuariosController extends Controller
             $usuarios['imagen']="$imagenUsuario";
         }
         Usuario::create($usuarios);
-        return redirect()->route('usuarios.index')->with('agregar','ok');
+        return redirect()->route('usuarios.index')->with('agregar','Ok');
     }
 
     /**
@@ -59,13 +58,9 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        $usuarios = Usuario::find($id);
-
-        if (!$usuarios) {
-            abort(404);
-        }
+        $usuario = Usuario::find($id);
     
-        return view('Usuarios.show', compact('usuarios'));
+        return view('Usuarios.show', compact('usuario'));
     }
 
     /**
@@ -76,7 +71,12 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuarios = Usuario::all();
+    
+        $usuarios = Usuario::findOrFail($id); 
+        
+
+        return view('usuarios.edit', compact('usuarios'));
     }
 
     /**
@@ -88,8 +88,21 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = Usuario::findOrFail($id);
+
+    $datos_usuario = $request->all();
+
+    if ($imagen=$request->file('imagen')) {
+        $rutaGuardarImagen='imagen/';
+            $imagenUsuario= time().".".$imagen->extension();
+            $imagen->move($rutaGuardarImagen,$imagenUsuario);
+            $datos_usuario['imagen']="$imagenUsuario";
     }
+
+    $usuario->update($datos_usuario);
+
+    return redirect()->route('usuarios.index')->with('editar', 'Ok');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -99,6 +112,13 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+    $usuario = Usuario::find($id);
+
+    if ($usuario) {
+        $usuario->delete();
+        return redirect()->route('usuarios.index')->with('eliminar','Ok');
+    } else {
+        return redirect()->route('usuarios.index');
+    }
     }
 }

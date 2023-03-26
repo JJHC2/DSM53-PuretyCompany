@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer("n_ex");
             $table->integer("n_int");
             $table->string("colonia");
+            $table->unsignedBigInteger("estado_id");
+            $table->foreign("estado_id")->references("id")->on("estados");
             $table->unsignedBigInteger("usuario_id");
             $table->foreign("usuario_id")->references("id")->on("usuario");
             $table->timestamps();

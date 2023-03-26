@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Requerimiento;
+use App\Models\Sensor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,10 @@ class RequerimientosController extends Controller
      */
     public function index()
     {
-        return view("Requerimientos/index");
+
+        $requerimientos = Requerimiento::Select('requerimientos.id','requerimientos.PPM','sensor.nombre')
+        ->join('sensor','sensor.id','=','requerimientos.sensor_id')->get();
+        return view("Requerimientos.index",compact("requerimientos"));
     }
 
     /**
@@ -24,7 +29,8 @@ class RequerimientosController extends Controller
      */
     public function create()
     {
-        //
+        $sensor = Sensor::all('id','nombre');
+        return view('Requerimientos.create' ,compact('sensor'));
     }
 
     /**
@@ -35,7 +41,9 @@ class RequerimientosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requerimientos=$request->all();
+        Requerimiento::create($requerimientos);
+        return redirect('requerimientos')->with('agregar','ok');
     }
 
     /**

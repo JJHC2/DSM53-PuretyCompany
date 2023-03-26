@@ -26,22 +26,26 @@
           <div class="card-header">
             <h4 class="card-title">Alta Tipo Usuario</h4>
           </div>
-          <form action="{{ url('t_usuario')}}" method="post" enctype="multipart/form-data">
+          <form action="{{ url('t_usuario')}}" id="agregar" method="post" enctype="multipart/form-data">
             {!! csrf_field() !!}
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="nombre_t" placeholder="Ejemplo: Jair Josue" name="nombre_t" required>
+             <select class="form-control form-select" name="nombre_t" id="nombre_t">
+              <option>Administrador</option>
+              <option>Usuario</option>
+              <option>Cliente</option>
+             </select>
               <label for="floatingInput">Tipo Usuario</label>
           </div>
           <div class="form-floating mb-3">
             <select class="form-control form-select" aria-label="Default select example" name="usuario_id">
                 <option selected>Elige el Usuario</option>
                     @foreach($usuarios as $usuario)   
-                <option value={{$usuario->id}}>{{$usuario->nombre}}</option>
+                <option value={{$usuario->id}}>{{$usuario->nombre_u}}</option>
                    @endforeach
                 </select>
                 <label for="form-floating mb-3">Usuario</label>
           </div>
-  <a href="/usuarios" class="btn btn-danger m-3">Cancelar</a>
+  <a href="/t_usuario" class="btn btn-danger m-3">Cancelar</a>
   <button type="submit" class="btn btn-success m-3" value="save">Agregar</button>
           </form>
         </div>
@@ -50,4 +54,38 @@
   </div>
 </div>
 @include('layouts.footer')
+
+
+
+{{-- ALERTA --}}
+<script type="text/javascript">
+  $('#agregar').submit(function(r){
+      r.preventDefault();
+Swal.fire({
+      title: '¿Estas Seguro?',
+text: "No Puedes Revertir Esto!",
+icon: 'warning',
+showCancelButton: true,
+confirmButtonText: 'Si,Agregalo!',
+cancelButtonText: 'No, Cancelalo!',
+cancelButtonColor: 'red',
+confirmButtonColor: 'green',
+reverseButtons: true
+}).then((result) => {
+if (result.isConfirmed) {
+
+this.submit();
+}else if (
+/* Read more about handling dismissals below */
+result.dismiss === Swal.DismissReason.cancel
+) {
+swal.fire(
+'Cancelado',
+'¿Te Arrepentiste?',
+'error'
+)
+}
+})
+});
+</script>   
 
