@@ -28,7 +28,10 @@ class DepositoApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        Deposito::create($input);
+
+        return ('El deposito se dio de alta con exito');
     }
 
     /**
@@ -39,7 +42,10 @@ class DepositoApiController extends Controller
      */
     public function show($id)
     {
-        //
+        $depositos = Deposito::Select('deposito.id','deposito.codigo','deposito.capacidad','deposito.Lugar','usuario.nombre_u')
+        ->join('usuario','usuario.id','=','deposito.usuario_id')
+        ->where('deposito.id', '=', $id)->first();
+        return Response()->json($depositos,200);
     }
 
     /**
@@ -51,7 +57,11 @@ class DepositoApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $depositos = Deposito::findOrFail($id);
+        $input=$request->all();
+        $depositos->update($input);
+
+        return ('El deposito se actualizo con exito');
     }
 
     /**
@@ -62,6 +72,10 @@ class DepositoApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $depositos= Deposito::findOrFail($id);
+
+        $depositos->delete();
+
+        return ('El deposito se elimino de manera correcta');
     }
 }

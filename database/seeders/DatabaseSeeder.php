@@ -23,6 +23,14 @@ class DatabaseSeeder extends Seeder
             MunicipiosSeeder::class
         ]);
         Schema::enableForeignKeyConstraints();
+
+        \App\Models\Usuario::factory(10)->create();
+        \App\Models\TipoUsuario::factory(10)->create();
+        \App\Models\Ubicacion::factory(10)->create();
+        \App\Models\Deposito::factory(10)->create();
+        \App\Models\Sensor::factory(10)->create();
+        \App\Models\Requerimiento::factory(10)->create();
     }
+
     }
 

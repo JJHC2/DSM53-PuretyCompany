@@ -22,6 +22,7 @@ class Estados extends Model
     {
         return $this->hasMany(Municipios::class, 'id_estado', 'id');
     }
+    
     public function ubicacion()
 {
     return $this->hasOne(Ubicacion::class);

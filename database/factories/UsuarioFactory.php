@@ -17,7 +17,7 @@ class UsuarioFactory extends Factory
     public function definition()
     {
         return [
-            'nombre'=>$this->faker->name(),
+            'nombre_u'=>$this->faker->name(),
             'app'=>$this->faker->name(),
             'apm'=>$this->faker->name(),
             'email'=>$this->faker->email(),

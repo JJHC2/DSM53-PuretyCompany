@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string("colonia");
             $table->unsignedBigInteger("estado_id");
             $table->foreign("estado_id")->references("id")->on("estados");
+            $table->unsignedBigInteger("municipio_id");
+            $table->foreign("municipio_id")->references("id")->on("municipios");
             $table->unsignedBigInteger("usuario_id");
             $table->foreign("usuario_id")->references("id")->on("usuario");
             $table->timestamps();

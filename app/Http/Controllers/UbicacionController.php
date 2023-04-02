@@ -18,8 +18,9 @@ class UbicacionController extends Controller
     public function index()
     {
         $ubicacion = Ubicacion::Select('ubicacion.id','ubicacion.calle','ubicacion.colonia','ubicacion.n_ex','ubicacion.n_int','ubicacion.ciudad',
-        'usuario.nombre_u','estados.nombre_e')
+        'usuario.nombre_u','estados.nombre_e','municipios.nombre')
         ->join('usuario','usuario.id','=','ubicacion.usuario_id')->join('estados','estados.id','=','ubicacion.estado_id')
+        ->join('municipios','municipios.id','=','ubicacion.municipio_id')
       ->get();
         return view("Ubicacion.index",compact("ubicacion"));
     }
@@ -73,8 +74,9 @@ class UbicacionController extends Controller
     {
         $usuarios=Usuario::all('id','nombre_u');
         $estados=Estados::all('id','nombre_e');
+        $municipios=Municipios::all('id','nombre');
         $ubicacion = ubicacion::findOrFail($id);    
-        return view('ubicacion.edit', compact('ubicacion','usuarios','estados'));
+        return view('ubicacion.edit', compact('ubicacion','usuarios','estados','municipios'));
     }
 
     /**

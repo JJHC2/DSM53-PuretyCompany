@@ -64,6 +64,15 @@
                             </select>
                                 <label for="form-floating mb-3">Estado</label>
                           </div>
+                          <div class="form-floating mb-3">
+                            <select class="form-control form-select" aria-label="Default select example" name="municipio_id">
+                                <option selected>Elige el Municipio:</option>
+                                @foreach($municipios as $municipio)
+                                    <option value="{{ $municipio->id }}" @if($municipio->id == $ubicacion->municipio_id) selected @endif>{{ $municipio->nombre }}</option>
+                                @endforeach
+                            </select>
+                                <label for="form-floating mb-3">Municipio</label>
+                          </div>
                       
                       <div class="form-floating mb-3">
                         <select class="form-control form-select" aria-label="Default select example" name="usuario_id">
@@ -81,8 +90,8 @@
             </div>
         </div>
     </div>
-</div>
-@include("Layouts.footer")                      
+    @include("Layouts.footer")             
+</div>         
 
 
 

@@ -43,6 +43,7 @@
                   <th scope="col">Colonia</th>
                   <th scope="col">Estado</th>
                   <th scope="col">Usuario</th>
+                  <th scope="col">Municipios</th>
                   <th class="text-center">Mostrar</th>
                   <th class="text-center">Eliminar</th>
                   <th class="text-center">Modificar</th>
@@ -58,6 +59,7 @@
                   <td>{{$ubica->colonia}}</td>
                   <td>{{$ubica->nombre_e}}</td>
                   <td>{{$ubica->nombre_u}}</td>
+                  <td>{{$ubica->nombre}}</td>
                   <td><a href="ubicacion/{{ $ubica->id }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a></td>
                   <td>
                     <form action="{{ route('ubicacion.destroy', $ubica->id) }}" class="d-inline formulario-eliminar" method="POST">

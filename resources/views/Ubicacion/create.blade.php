@@ -59,7 +59,15 @@
                           </select>
                           <label for="estado_id">Estado</label>
                       </div>
-                      
+                      <div class="form-floating mb-3">
+                        <select class="form-control form-select" aria-label="Default select example" name="municipio_id" id="municipio_id">
+                            <option selected>Elige el Municipio</option>
+                            @foreach($municipios as $municipio)   
+                                <option value="{{$municipio->id}}">{{$municipio->nombre}}</option>
+                            @endforeach
+                        </select>
+                        <label for="floatingInput">Municipio</label>
+                    </div>
                       <div class="form-floating mb-3">
                         <select class="form-control form-select" aria-label="Default select example" name="usuario_id" id="usuario_id">
                             <option selected>Elige el Usuario</option>

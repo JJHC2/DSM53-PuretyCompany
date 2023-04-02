@@ -18,4 +18,8 @@ class Municipios extends Model
     {
         return $this->hasOne(Estados::class, 'id', 'id_estado');
     }
+    public function Ubicacion()
+    {
+        return $this->hasOne(Ubicacion::class,'id');
+    }
 }

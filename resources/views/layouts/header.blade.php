@@ -74,10 +74,9 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="now-ui-icons users_single-02"></i>
+                  <a class="btn btn-danger" href="{{ route('logout')}}">Salir del sistema</a>
                   <p>
-                    <span class="d-lg-none d-md-block">Account</span>
+                    <span class="d-lg-none d-md-block">Cerrar Sesion</span>
                   </p>
                 </a>
               </li>

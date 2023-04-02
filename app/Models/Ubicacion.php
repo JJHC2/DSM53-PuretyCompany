@@ -16,6 +16,7 @@ class Ubicacion extends Model
         'n_int',
         'colonia',
         'estado_id',
+        'municipio_id',
         'usuario_id',
     ];
     public function Usuario()
@@ -25,5 +26,9 @@ class Ubicacion extends Model
     public function Estados()
 {
     return $this->belongsTo(Estados::class, 'estado_id');
+}
+public function Municipios()
+{
+    return $this->belongsTo(Municipios::class,'municipio_id');
 }
 }

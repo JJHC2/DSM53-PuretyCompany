@@ -27,7 +27,10 @@ class RequisitosApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        Requerimiento::create($input);
+
+        return ('El registro se dio de alta con exito');
     }
 
     /**
@@ -38,7 +41,10 @@ class RequisitosApiController extends Controller
      */
     public function show($id)
     {
-        //
+        $requerimientos = Requerimiento::Select('requerimientos.id','requerimientos.PPM','sensor.nombre')
+        ->join('sensor','sensor.id','=','requerimientos.sensor_id')
+        ->where('requerimientos.id', '=', $id)->first();
+        return Response()->json($requerimientos,200);
     }
 
     /**
@@ -50,7 +56,11 @@ class RequisitosApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $requerimientos = Requerimiento::findOrFail($id);
+        $input=$request->all();
+        $requerimientos->update($input);
+
+        return ('El registro se actualizo con exito');
     }
 
     /**
@@ -61,6 +71,10 @@ class RequisitosApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $requerimientos= Requerimiento::findOrFail($id);
+
+        $requerimientos->delete();
+
+        return ('El registro se elimino de manera correcta');
     }
 }

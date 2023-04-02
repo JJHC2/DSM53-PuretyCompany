@@ -5,6 +5,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\TipoUsuarioController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\UbicacionController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DepositoController;
 use App\Http\Controllers\SensorController;
 use App\Http\Controllers\RequerimientosController;
@@ -33,5 +34,12 @@ Route::resource('sensor', SensorController::class);
 Route::resource('requerimientos', RequerimientosController::class);
 Route::resource('estados',EstadosController::class);
 Route::resource('municipios',MunicipiosController::class);
+
+
+/* RUTAS PARA EL LOGIN */
+Route::name('login')->get('login',[LoginController::class,'login']);
+Route::name('validar')->get('validar',[LoginController::class,'validar']);
+Route::name('logout')->get('logout',[LoginController::class,'logout']);
+
 
 

@@ -28,7 +28,10 @@ class SensorApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        Sensor::create($input);
+
+        return ('El sensor se dio de alta con exito');
     }
 
     /**
@@ -39,7 +42,10 @@ class SensorApiController extends Controller
      */
     public function show($id)
     {
-        //
+        $sensor = Sensor::Select('sensor.id','sensor.nombre','deposito.codigo')
+        ->join('deposito','deposito.id','=','sensor.deposito_id')
+        ->where('sensor.id', '=', $id)->first();
+        return Response()->json($sensor,200);
     }
 
     /**
@@ -51,7 +57,11 @@ class SensorApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sensor = Sensor::findOrFail($id);
+        $input=$request->all();
+        $sensor->update($input);
+
+        return ('El sensor se actualizo con exito');
     }
 
     /**
@@ -62,6 +72,10 @@ class SensorApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sensor= Sensor::findOrFail($id);
+
+        $sensor->delete();
+
+        return ('El sensor se elimino de manera correcta');
     }
 }

@@ -83,6 +83,17 @@
       </div>
 
 
+      @include('Layouts.footer')
+
+
+
+
+
+
+
+
+
+      
 
 
       {{-- ALERTAS --}}

@@ -28,7 +28,9 @@ class UsuariosApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        Usuario::create($input);
+        return ('El usuario se dio de alta con exito');
     }
 
     /**
@@ -39,7 +41,9 @@ class UsuariosApiController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuarios = Usuario::find($id);
+
+        return Response()->json($usuarios,200);
     }
 
     /**
@@ -51,7 +55,12 @@ class UsuariosApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuarios = Usuario::findOrFail($id);
+        $input=$request->all();
+        $usuarios->update($input);
+
+        return ('El usuario se actualizo con exito');
+    
     }
 
     /**
@@ -62,6 +71,10 @@ class UsuariosApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuarios= Usuario::findOrFail($id);
+
+        $usuarios->delete();
+
+        return ('El usuario se elimino de manera correcta');
     }
 }

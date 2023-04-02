@@ -39,6 +39,7 @@
                   <th scope="col">Colonia</th>
                   <th scope="col">Estado</th>
                   <th scope="col">Usuario</th>
+                  <th scope="col">Municipios</th>
                 </thead>
                 <tbody>
                   <tr>
@@ -50,6 +51,7 @@
                   <td>{{$ubicacion->colonia}}</td>
                   <td>{{$ubicacion->Estados->nombre_e}}</td>
                   <td>{{$ubicacion->usuario->nombre_u}}</td>
+                  <td>{{$ubicacion->municipios->nombre}}</td>
                   <a href="/ubicacion" class="btn btn-danger m-3">Salir</a>
                 </tbody>
               </table>
